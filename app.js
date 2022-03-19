@@ -91,7 +91,7 @@ app.post('/dataLogin', (req, res) => {
     res.redirect('/login');
 })
 
-app.listen(8000, (err) => {
+app.listen(process.env.PORT || 8000, (err) => {
     if (!err)
         console.log("server running on port 8000");
 })
