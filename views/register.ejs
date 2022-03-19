@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image demo</title>
+</head>
+<body>
+    <h1>Image Coordinates: Register</h1>
+
+    <h3>Click on Points on the image to set your passpoints</h3>
+
+    <form action="/login" method="get">
+        <button type="submit">CONFIRM POINTS</button>
+    </form>
+
+    <img id="myImage"src="images.jpg" alt="birds" width="1200" height="600">
+
+    <form action="/data" method="post">
+        <input type="hidden" name="imgX" id="imgX">
+        <input type="hidden" name="imgY" id="imgY">
+        <button type="submit" id="submit"></button>
+    </form>
+
+    <script>
+        const img = document.querySelector('#myImage');
+        const imgX = document.querySelector("#imgX");
+        const imgY = document.querySelector("#imgY");
+        img.addEventListener('click', (event)=>{
+            event.preventDefault();
+            console.log(event);
+            imgX.value = event.clientX;
+            imgY.value = event.clientY;
+            const submit = document.querySelector('#submit');
+            submit.click();
+        })
+        
+    </script>
+</body>
+</html>
