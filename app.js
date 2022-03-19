@@ -5,7 +5,7 @@ const app = express();
 
 let coordinates = [];
 let coordinatesLogin = [];
-const tol = 50;
+const tol = 10;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -39,13 +39,24 @@ app.get('/verify', (req, res) => {
     let flag = true;
     for (let i = 0; i < n; i++) {
 
-        if (coordinatesLogin[i].X > coordinates[i].X + tol || coordinatesLogin[i].X < coordinates[i].X - tol) {
+        const aX = Number(coordinates[i].X);
+        const bX = Number(coordinatesLogin[i].X);
+
+        const aY = Number(coordinates[i].Y);
+        const bY = Number(coordinatesLogin[i].Y);
+
+        if((bX > aX + tol) || (bX < aX - Number(tol))) {
             flag = false;
+            console.log(aX + tol);
+            console.log(aX - tol);
+            console.log(bX);
             break;
         }
 
-        if (coordinatesLogin[i].Y > coordinates[i].Y + tol || coordinatesLogin[i].Y < coordinates[i].Y - tol) {
+        if((bY > aY + tol) ||( bY < aY - Number(tol))) {
             flag = false;
+            console.log(aY);
+            console.log(bY);
             break;
         }
     }
